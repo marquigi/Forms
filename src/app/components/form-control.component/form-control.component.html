@@ -1,0 +1,13 @@
+<h4>FormControl singolo</h4>
+<label for="nome">Nome</label>
+
+<!-- Campo di input collegato a un FormControl -->
+<input type="text" class="form-control" id="nome" [formControl]="nome">
+<!-- tipo di campo: testo -->
+<!-- classe Bootstrap per lo stile -->
+<!-- identificatore HTML -->
+<!-- binding Angular: collega l’input al FormControl 'nome' nel file TypeScript -->
+
+<br>
+<button type="button" class="btn btn-primary" (click)="stampaNome()">Stampa il nome</button>
+<button type="button" class="btn btn-primary m-2" (click)="cambiaNome()">Diventa "Luigi"</button>
