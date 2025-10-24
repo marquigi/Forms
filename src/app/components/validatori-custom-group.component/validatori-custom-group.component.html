@@ -1,0 +1,24 @@
+<h4>Validatore Custom su FormGroup</h4>
+<form [formGroup]="frm">
+    <div class="row">
+        <div class="col">
+            <label for="p1">Password</label>
+            <input [type]="tipo_input" class="form-control" formControlName="p1" id="p1">
+        </div>
+        <div class="col">
+            <label for="p2">Conferma Password</label>
+            <input [type]="tipo_input" class="form-control" formControlName="p2" id="p2">
+        </div>
+    </div>
+    @if(frm.errors && frm.touched){
+    <span class="text-danger">
+        @if(frm.errors["no_p1"]){
+        {{ frm.errors["no_p1"] }}
+        }
+        @if(frm.errors["mismatch"]){
+        {{ frm.errors["mismatch"] }}
+        }
+    </span>
+    }
+</form>
+<button type="button" class="btn btn-secondary" (click)="showPassword()">Mostra password</button>

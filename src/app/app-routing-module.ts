@@ -1,25 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormControlComponent } from './components/form-control.component/form-control.component';
-import { FormGroupComponent } from './components/form-group.component/form-group.component';
-
+import { FormControlComponent } from './form-control/form-control.component';
+import { FormGroupComponent } from './form-group/form-group.component';
+import { ValidatoriComponent } from './validatori/validatori.component';
+import { GestioneErroriComponent } from './gestione-errori/gestione-errori.component';
+import { ValidatoriCustomControlComponent } from './validatori-custom-control/validatori-custom-control.component';
+import { ValidatoriCustomGroupComponent } from './validatori-custom-group/validatori-custom-group.component';
 
 const routes: Routes = [
-  // Definizione delle rotte dell’applicazione:
-  // la rotta '' (root) mostra FormControlComponent,
-  // mentre 'form-group' mostra FormGroupComponent
+  { path: '', component: FormControlComponent },
+  { path: 'form-group', component: FormGroupComponent },
   {
-    path: '',
-    component: FormControlComponent
+    path: 'validatori',
+    component: ValidatoriComponent,
+    children: [
+      { path: '', component: GestioneErroriComponent },
+      { path: 'custom-control', component: ValidatoriCustomControlComponent },
+      { path: 'custom-group', component: ValidatoriCustomGroupComponent },
+    ],
   },
-  {
-    path: 'form-group',
-    component: FormGroupComponent,
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
+

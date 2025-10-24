@@ -1,0 +1,8 @@
+<h4>Validatore custom su FormControl</h4>
+<label for="citta">Città</label>
+<input type="text" id="citta" [formControl]="citta" class="form-control" />
+@if(citta.errors && citta.touched){
+<span class="text-danger">
+    {{ citta.errors["citta_non_valida"] }}
+</span>
+}

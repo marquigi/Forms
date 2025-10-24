@@ -1,1 +1,33 @@
-<p>form-group.component works!</p>
+<h4>Esempio di FormGroup</h4>
+<form [formGroup]="frm">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" formControlName="nome" id="nome" />
+    <label for="cognome">Cognome</label>
+    <input type="text" class="form-control" formControlName="cognome" id="cognome" />
+
+    <!-- Annidamento di FormGroup -->
+    <h4 class="mt-4">Indirizzo</h4>
+    <div formGroupName="indirizzo">
+        <label for="via">Via</label>
+        <input type="text" class="form-control" formControlName="via" id="via" />
+        <label for="civico">Numero civico</label>
+        <input type="text" class="form-control" formControlName="civico" id="civico" />
+    </div>
+</form>
+<button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaTutto()">
+    Imposta tutto
+</button>
+<button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaCognome()">
+    Imposta solo il cognome
+</button>
+<button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaFrm()">
+    Stampa il valore
+</button>
+<button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaCognome()">
+    Stampa il cognome
+</button>
+<button type="button" class="btn btn-secondary mt-2 me-1" (click)="setIndirizzo()">
+    Imposta l'indirizzo
+</button>
+<br>
+<pre>{{ frm.value | json }}</pre>

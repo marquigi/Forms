@@ -1,29 +1,18 @@
 <div class="container my-5">
-  <h1>Reactive Forms</h1>
-
+  <h1>Reactive forms</h1>
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
-
       <a class="nav-link" routerLink="/" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">FormsControl</a>
-      <!-- classe Bootstrap per lo stile del link -->
-      <!-- rotta Angular: quando cliccato naviga alla rotta root ('') -->
-      <!-- evidenzia il link quando la rotta è attiva -->
-      <!-- assicura che il link sia attivo solo se la rotta è esattamente '/' -->
-      <!-- testo visibile del link -->
-
+        [routerLinkActiveOptions]="{ exact: true }">FormControl</a>
     </li>
     <li class="nav-item">
-
       <a class="nav-link" routerLink="/form-group" routerLinkActive="active">FormGroup</a>
-      <!-- classe Bootstrap per lo stile del link -->
-      <!-- rotta Angular: quando cliccato naviga alla rotta root ('/form-group') -->
-      <!-- evidenzia il link quando la rotta è attiva -->
-      <!-- testo visibile del link -->
-
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">FormAway</a>
+      <a class="nav-link" routerLink="/validatori" routerLinkActive="active">Validatori</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">FormArray</a>
     </li>
   </ul>
   <hr>

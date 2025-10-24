@@ -1,11 +1,15 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlComponent } from './components/form-control.component/form-control.component';
 import { FormGroupComponent } from './components/form-group.component/form-group.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ValidatoriComponent } from './components/validatori.component/validatori.component';
+import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component';
+import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component';
+import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component';
 
 
 @NgModule({
@@ -13,16 +17,17 @@ import { FormGroupComponent } from './components/form-group.component/form-group
     App,
     FormControlComponent,
     FormGroupComponent,
+    ValidatoriComponent,
+    GestioneErroriComponent,
+    ValidatoriCustomControlComponent,
+    ValidatoriCustomGroupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    ReactiveFormsModule // Necessario per usare FormControl e FormGroup nei componenti che NON sono standalone
+    ReactiveFormsModule
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
-  ],
+  providers: [],
   bootstrap: [App]
 })
 export class AppModule { }

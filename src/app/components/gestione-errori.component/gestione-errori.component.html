@@ -1,0 +1,28 @@
+<h4>Lunghezza massima</h4>
+<label for="msg">Inserisci un messaggio</label>
+<textarea class="form-control" rows="6" [formControl]="msg"></textarea>
+@if(msg.errors && msg.touched){ @let e = msg.errors["maxlength"];
+<span class="text-danger">
+    Puoi inserire al max 20 caratteri, elimina
+    {{ e["actualLength"] - e["requiredLength"] }}
+    caratteri
+</span>
+}
+<pre>{{ msg.errors | json }}</pre>
+
+<hr />
+
+<h4>Required e lunghezza minima</h4>
+<label for="nome">Nome</label>
+<input type="text" class="form-control" [formControl]="nome" />
+@if(nome.errors && nome.touched){
+<span class="text-danger">
+    @if(nome.errors["required"]){
+    Campo obbligatorio
+    }
+    @if(nome.errors["minlength"]){
+    Inserisci almeno 2 caratteri
+    }
+</span>
+}
+<pre>{{ nome.errors | json }}</pre>
