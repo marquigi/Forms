@@ -1,38 +1,53 @@
+<!-- Sezione: FormControl semplice con input di testo -->
 <h4>FormControl singolo</h4>
 <label for="nome">Nome</label>
 <input type="text" class="form-control" id="nome" [formControl]="nome" />
+<!-- Campo collegato al FormControl 'nome' nel TS -->
 <br />
+<!-- Bottone che richiama metodo per mostrare valore -->
 <button type="button" class="btn btn-primary" (click)="stampaNome()">
     Stampa il nome
 </button>
+<!-- Bottone che cambia il valore del FormControl da codice -->
 <button type="button" class="btn btn-primary" (click)="cambiaNome()">
     Diventa "Laura"
 </button>
+
 <hr />
+
+<!-- Sezione: Select città e scelta sesso con radio -->
 <h4>FormControl su Select e Radio button</h4>
 <label for="citta">Città</label>
 <select class="form-select" id="citta" [formControl]="citta">
     <option value="">Scegli...</option>
+    <!-- Ciclo che crea le option dalla lista cittaOpts del TS -->
     @for(c of cittaOpts; track c.cod_cat){
     <option [value]="c.cod_cat">{{ c.nome }}</option>
     }
 </select>
 <br />
+<!-- Radio per scegliere Uomo associata al FormControl 'sesso' -->
 <div class="form-check">
     <input class="form-check-input" type="radio" name="sex" id="sesso_m" value="M" [formControl]="sesso" />
     <label class="form-check-label" for="sesso_m"> Uomo </label>
 </div>
+<!-- Radio per scegliere Donna associata al FormControl 'sesso' -->
 <div class="form-check">
     <input class="form-check-input" type="radio" name="sex" id="sesso_f" value="F" [formControl]="sesso" />
     <label class="form-check-label" for="sesso_f"> Donna </label>
 </div>
+
 <hr />
+
+<!-- Sezione: Select provincia e comune dipendenti tra loro -->
 <h4>Select dipendenti</h4>
 <div class="row">
     <div class="col">
         <label for="provincia">Provincia</label>
+        <!-- Quando cambia la provincia si aggiorna la lista dei comuni -->
         <select id="provincia" class="form-select" [formControl]="provincia">
             <option value="">Scegli una provincia...</option>
+            <!-- Opzioni generate dalla lista province nel TS -->
             @for(p of province; track p.sigla){
             <option [value]="p.sigla">{{ p.nome }}</option>
             }
@@ -40,15 +55,20 @@
     </div>
     <div class="col">
         <label for="comune">Comune</label>
+        <!-- Select comune abilitata solo dopo scelta provincia -->
         <select id="comune" class="form-select" [formControl]="comune">
             <option value="">Scegli un comune...</option>
+            <!-- Opzioni dei comuni in base alla provincia selezionata -->
             @for(c of comuni; track c.cod_istat){
             <option [value]="c.cod_istat">{{ c.nome }}</option>
             }
         </select>
     </div>
 </div>
+
 <hr>
+
+<!-- Sezione: Input nome con validazione obbligatoria -->
 <h4>FormControl con validatore</h4>
 <label for="nomeValidato">Nome</label>
 
@@ -56,12 +76,17 @@
     'is-invalid': nomeConValidatore.invalid && nomeConValidatore.touched,
     'is-valid': nomeConValidatore.valid && nomeConValidatore.dirty
   }" />
+<!-- Cambia stile se valido o invalido -->
 
+<!-- Messaggio di errore se il campo è toccato e invalido -->
 @if(nomeConValidatore.invalid && nomeConValidatore.touched){
 <div class="text-danger">
     Inserisci un nome valido
 </div>
 }
+
+<!-- Bottone che richiama il metodo invia() per validazione e submit -->
+
 <!-- <button type="button" class="btn btn-primary mt-3" [disabled]="nomeConValidatore.invalid">
   Invia
 </button> -->
@@ -69,15 +94,20 @@
     Invia
 </button>
 
+
 <hr>
+
+<!-- Sezione: Validazione dinamica IBAN in base al checkbox -->
 <h4>FormControl con validatore dinamico</h4>
 <label for="iban">Inserisci il tuo IBAN</label>
 <input type="text" class="form-control" id="iban" [formControl]="iban">
+<!-- Il campo diventa invalido se formato errato -->
 @if(iban.invalid && iban.touched){
 <div class="text-danger">
     Inserisci un IBAN valido
 </div>
 }
+<!-- Checkbox che abilita/disabilita validatori IBAN a runtime -->
 <div class="form-check mt-2">
     <input class="form-check-input" type="checkbox" [formControl]="no_cc" id="no_cc">
     <label class="form-check-label" for="no_cc">

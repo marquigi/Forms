@@ -1,33 +1,46 @@
+<!-- Form con controlli raggruppati tramite FormGroup -->
 <h4>Esempio di FormGroup</h4>
 <form [formGroup]="frm">
+    <!-- Collego il form al FormGroup dichiarato nel TS -->
     <label for="nome">Nome</label>
+    <!-- Campo nome collegato al FormControl 'nome' -->
     <input type="text" class="form-control" formControlName="nome" id="nome" />
     <label for="cognome">Cognome</label>
+    <!-- Campo cognome collegato al FormControl 'cognome' -->
     <input type="text" class="form-control" formControlName="cognome" id="cognome" />
 
-    <!-- Annidamento di FormGroup -->
+    <!-- FormGroup annidato per l'indirizzo -->
     <h4 class="mt-4">Indirizzo</h4>
+    <!-- Indico che i campi interni fanno parte del gruppo 'indirizzo' -->
     <div formGroupName="indirizzo">
         <label for="via">Via</label>
+        <!-- Campo via -->
         <input type="text" class="form-control" formControlName="via" id="via" />
         <label for="civico">Numero civico</label>
+        <!-- Campo numero civico -->
         <input type="text" class="form-control" formControlName="civico" id="civico" />
     </div>
 </form>
+<!-- Bottone che imposta tutti i valori del form -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaTutto()">
     Imposta tutto
 </button>
+<!-- Bottone che usa patchValue() per cambiare solo il cognome -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaCognome()">
     Imposta solo il cognome
 </button>
+<!-- Stampa tutto il FormGroup in console -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaFrm()">
     Stampa il valore
 </button>
+<!-- Mostra solo il cognome -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaCognome()">
     Stampa il cognome
 </button>
+<!-- Imposta solo i dati del gruppo indirizzo -->
 <button type="button" class="btn btn-secondary mt-2 me-1" (click)="setIndirizzo()">
     Imposta l'indirizzo
 </button>
 <br>
+<!-- Debug: mostra il valore del form in tempo reale -->
 <pre>{{ frm.value | json }}</pre>
