@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormControlComponent } from './form-control/form-control.component';
-import { FormGroupComponent } from './form-group/form-group.component';
-import { ValidatoriComponent } from './validatori/validatori.component';
-import { GestioneErroriComponent } from './gestione-errori/gestione-errori.component';
-import { ValidatoriCustomControlComponent } from './validatori-custom-control/validatori-custom-control.component';
-import { ValidatoriCustomGroupComponent } from './validatori-custom-group/validatori-custom-group.component';
+import { FormControlComponent } from './components/form-control.component/form-control.component';
+import { FormGroupComponent } from './components/form-group.component/form-group.component';
+import { ValidatoriComponent } from './components/validatori.component/validatori.component';
+import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component';
+import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component';
+import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component';
 
 const routes: Routes = [
   { path: '', component: FormControlComponent },
