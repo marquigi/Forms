@@ -1,20 +1,28 @@
+<!-- Layout principale dell'app -->
 <div class="container my-5">
+  <!-- Titolo della pagina -->
   <h1>Reactive forms</h1>
+  <!-- Barra di navigazione con le varie sezioni dei form -->
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
+      <!-- Link alla sezione con esempio base di FormControl -->
       <a class="nav-link" routerLink="/" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }">FormControl</a>
     </li>
     <li class="nav-item">
+      <!-- Link alla sezione con esempio di FormGroup -->
       <a class="nav-link" routerLink="/form-group" routerLinkActive="active">FormGroup</a>
     </li>
     <li class="nav-item">
+      <!-- Link alla sezione con esempi di validazioni -->
       <a class="nav-link" routerLink="/validatori" routerLinkActive="active">Validatori</a>
     </li>
     <li class="nav-item">
+      <!-- Link (ancora da implementare) ai FormArray -->
       <a class="nav-link" href="#">FormArray</a>
     </li>
   </ul>
   <hr>
+  <!-- Qui verrà caricato il contenuto della route attiva -->
   <router-outlet></router-outlet>
 </div>
