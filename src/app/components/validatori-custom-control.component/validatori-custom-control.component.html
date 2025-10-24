@@ -1,7 +1,11 @@
+<!-- Sezione: validatore personalizzato sulla città -->
 <h4>Validatore custom su FormControl</h4>
 <label for="citta">Città</label>
 <input type="text" id="citta" [formControl]="citta" class="form-control" />
+<!-- Campo collegato al FormControl con validazione custom -->
+<!-- Mostra errore solo se il campo è stato toccato e contiene errori -->
 @if(citta.errors && citta.touched){
+<!-- Messaggio di errore generato dal validatore custom -->
 <span class="text-danger">
     {{ citta.errors["citta_non_valida"] }}
 </span>

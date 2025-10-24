@@ -1,10 +1,15 @@
+<!-- Layout a due colonne: menu e contenuto -->
 <div class="row">
     <div class="col-4">
+        <!-- Link alla gestione degli errori -->
         <a routerLink="/validatori">Gestione degli errori</a><br><br>
+        <!-- Link al validatore custom su FormControl -->
         <a routerLink="/validatori/custom-control">Validatore custom (FormControl)</a><br><br>
+        <!-- Link al validatore custom su FormGroup -->
         <a routerLink="/validatori/custom-group">Validatore custom (FormGroup)</a><br>
     </div>
     <div class="col">
+        <!-- Qui verranno caricati i componenti figlio in base alla route -->
         <router-outlet></router-outlet>
     </div>
 </div>

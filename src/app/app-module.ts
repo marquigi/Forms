@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'; // Modulo principale Angular
+import { BrowserModule } from '@angular/platform-browser'; // Necessario per applicazioni web in browser
 
-import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
-import { FormControlComponent } from './components/form-control.component/form-control.component';
-import { FormGroupComponent } from './components/form-group.component/form-group.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ValidatoriComponent } from './components/validatori.component/validatori.component';
-import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component';
-import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component';
-import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component';
+import { AppRoutingModule } from './app-routing-module'; // Modulo di routing dell'app
+import { App } from './app'; // Componente root dell'applicazione
+import { FormControlComponent } from './components/form-control.component/form-control.component'; // Esempio base di FormControl
+import { FormGroupComponent } from './components/form-group.component/form-group.component'; // Esempio di FormGroup
+import { ReactiveFormsModule } from '@angular/forms'; // Modulo necessario per usare Reactive Forms (FormControl, FormGroup, formControlName, ecc.)
+import { ValidatoriComponent } from './components/validatori.component/validatori.component'; // Componente gestione validazioni
+import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component'; // Messaggi di errore reattivi
+import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component'; // Validatore personalizzato su FormControl
+import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component'; // Validatore personalizzato su FormGroup
 
 
 @NgModule({
   declarations: [
+    // Componenti dichiarati in questo modulo
     App,
     FormControlComponent,
     FormGroupComponent,
@@ -23,11 +24,13 @@ import { ValidatoriCustomGroupComponent } from './components/validatori-custom-g
     ValidatoriCustomGroupComponent
   ],
   imports: [
+    // Moduli che il progetto utilizza
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [App]
+  // Componente iniziale che viene avviato
 })
 export class AppModule { }

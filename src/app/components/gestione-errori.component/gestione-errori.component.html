@@ -1,28 +1,40 @@
+<!-- Sezione: Validazione lunghezza massima del messaggio -->
 <h4>Lunghezza massima</h4>
 <label for="msg">Inserisci un messaggio</label>
 <textarea class="form-control" rows="6" [formControl]="msg"></textarea>
-@if(msg.errors && msg.touched){ @let e = msg.errors["maxlength"];
+
+<!-- Collegato al FormControl 'msg' nel TS -->
+<!-- Mostra errore solo se toccato e con errori -->
+@if(msg.errors && msg.touched){
+<!-- Messaggio dinamico per lunghezza eccessiva -->
 <span class="text-danger">
     Puoi inserire al max 20 caratteri, elimina
     {{ e["actualLength"] - e["requiredLength"] }}
     caratteri
 </span>
 }
+<!-- Debug: mostra errori del FormControl msg -->
 <pre>{{ msg.errors | json }}</pre>
 
 <hr />
 
+<!-- Sezione: Campo nome con validatore obbligatorio e lunghezza minima -->
 <h4>Required e lunghezza minima</h4>
 <label for="nome">Nome</label>
 <input type="text" class="form-control" [formControl]="nome" />
+<!-- Input collegato a FormControl 'nome' -->
+<!-- Mostra messaggi di errore appropriati -->
 @if(nome.errors && nome.touched){
 <span class="text-danger">
+    <!-- Se manca il valore -->
     @if(nome.errors["required"]){
     Campo obbligatorio
     }
+    <!-- Se troppo corto -->
     @if(nome.errors["minlength"]){
     Inserisci almeno 2 caratteri
     }
 </span>
 }
+<!-- Se manca il valore -->
 <pre>{{ nome.errors | json }}</pre>

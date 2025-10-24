@@ -1,24 +1,32 @@
+<!-- Sezione: validazione di due password in un FormGroup -->
 <h4>Validatore Custom su FormGroup</h4>
 <form [formGroup]="frm">
+    <!-- Collego form al FormGroup con validatore custom -->
     <div class="row">
         <div class="col">
+            <!-- Campo password -->
             <label for="p1">Password</label>
             <input [type]="tipo_input" class="form-control" formControlName="p1" id="p1">
         </div>
         <div class="col">
+            <!-- Campo conferma password -->
             <label for="p2">Conferma Password</label>
             <input [type]="tipo_input" class="form-control" formControlName="p2" id="p2">
         </div>
     </div>
+    <!-- Mostra errori del FormGroup quando toccato -->
     @if(frm.errors && frm.touched){
     <span class="text-danger">
+        <!-- Errore se la prima password è vuota -->
         @if(frm.errors["no_p1"]){
         {{ frm.errors["no_p1"] }}
         }
+        <!-- Errore se le password non coincidono -->
         @if(frm.errors["mismatch"]){
         {{ frm.errors["mismatch"] }}
         }
     </span>
     }
 </form>
+<!-- Errore se le password non coincidono -->
 <button type="button" class="btn btn-secondary" (click)="showPassword()">Mostra password</button>
