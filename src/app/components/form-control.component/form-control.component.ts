@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 
+// Modello per rappresentare un comune
 interface Comune {
   nome: string;
   cod_istat: string;
 }
 
+// Modello per rappresentare una provincia con la lista dei comuni
 interface Provincia {
   nome: string;
   sigla: string;
@@ -21,31 +23,36 @@ interface Provincia {
 export class FormControlComponent {
   // <h4>FormControl singolo</h4>
   // un form control è un QUALSIASI controllo di un form
-  nome = new FormControl('Ivano');
-  nomeConValidatore = new FormControl('', Validators.required);
+  nome = new FormControl('Ivano'); // Rappresenta il campo nome
+  nomeConValidatore = new FormControl('', Validators.required); // Campo con validatore obbligatorio
+  // NOTA
 
   constructor() {
     //this.roma = { nome: "Roma", cod_istat: "000" }
   }
 
+  // Metodo chiamato automaticamente dopo l'inizializzazione del componente
   ngOnInit() {
     // L'observable valueChanges serve a "monitorare" il cambiamento del valore del FormControl
     this.nome.valueChanges.subscribe((v) => {
-      console.log(v);
+      // Mi iscrivo ai cambiamenti del campo nome
+      console.log(v); // Stampo nuovo valore in console
     });
 
     // mi sottoscrivo al cambiamento della provincia
     this.provincia.valueChanges.subscribe((p) => {
-      // se ho scelto "Scegli" -> non ci sono comuni e mi fermo
+      // Quando cambia la provincia aggiorno i comuni
       if (p === '') {
-        this.comuni = undefined;
-        this.comune.setValue('');
-        this.comune.disable();
+        // Nessuna provincia scelta
+        this.comuni = undefined; // Cancello lista comuni
+        this.comune.setValue(''); // Reset campo comune
+        this.comune.disable(); // Disabilito select comune
         return;
       }
 
+      // NOTA
       this.comuni = this.province.find((prov) => prov.sigla === p)?.comuni;
-      this.comune.enable();
+      this.comune.enable(); // Abilito select dei comuni
 
       // oppure...
       // for (let provincia of this.province) {
@@ -56,28 +63,33 @@ export class FormControlComponent {
       // }
     });
 
-    this.comune.setValue('');
-    this.comune.disable();
+    this.comune.setValue(''); // Imposto comune a vuoto
+    this.comune.disable(); // Inizio con campo disabilitato
 
     // non ho un conto corrente
     this.no_cc.valueChanges.subscribe((x) => {
       // se il checkbox è acceso, rimuovo tutti i validatori da IBAN
       if (x === true) {
-        this.iban.clearValidators();
-        this.iban.disable();
+        // Se non ho conto rimuovo controlli
+        this.iban.clearValidators(); // Tolgo validatori IBAN
+        this.iban.disable(); // IBAN non più editabile
       }
       // se lo spengo, riapplico i validatori
       else {
-        this.iban.enable();
-        this.iban.setValidators(this.iban_validators);
+        // Se ho il conto
+        this.iban.enable(); // Riattivo campo IBAN
+        this.iban.setValidators(this.iban_validators); // Riapplico validatori
       }
       // in qualsiasi caso, come richiesto dal framework, invoco la updateValueAndValidity()
-      this.iban.updateValueAndValidity(); // importante!
+      this.iban.updateValueAndValidity(); // Aggiorno stato validazione; IMPORTANTE!
     });
   }
 
   stampaNome() {
-    alert(`Hai digitato ${this.nome.value}`);
+    // Modifica il nome da codice
+    // Mostra il valore digitato in nome
+    alert(`Hai digitato ${this.nome.value}`); // Alert con valore aggiornato
+    // Cambio il valore senza triggerare valueChanges
   }
 
   cambiaNome() {
@@ -85,6 +97,7 @@ export class FormControlComponent {
     this.nome.setValue('Laura', { emitEvent: false });
   }
 
+  // FormControl per select città
   // <h4>FormControl su Select e Radio button</h4>
   citta = new FormControl('');
   cittaOpts: { nome: string; cod_cat: string }[] = [
@@ -94,8 +107,11 @@ export class FormControlComponent {
   sesso = new FormControl('M');
 
   // <h4>Select dipendenti</h4>
+  // FormControl per provincia
   provincia = new FormControl('');
+  // FormControl per comune dipendente
   comune = new FormControl('');
+  // Lista province con relativi comuni
   province: Provincia[] = [
     {
       nome: 'Roma',
@@ -118,6 +134,7 @@ export class FormControlComponent {
   ];
   comuni?: Comune[] = undefined;
 
+  // Metodo per gestire invio dei dati
   invia() {
     // if(this.nomeConValidatore.valid){
     //   // Ok, invio i dati al backend...
@@ -127,18 +144,20 @@ export class FormControlComponent {
     // }
 
     if (this.nomeConValidatore.invalid) {
-      this.nomeConValidatore.markAsTouched();
-      return;
+      // Se il nome non è valido mi fermo
+      this.nomeConValidatore.markAsTouched(); // Mostro messaggio errore
+      return; // Interrompo funzione
     }
-    // chiamata ajax
+    // Qui farei richiesta al server
   }
 
   // <h4>FormControl con validatore dinamico</h4>
+  // Validatori per il campo IBAN
   iban_validators: ValidatorFn[] = [
     Validators.required,
-    Validators.pattern(/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/),
+    Validators.pattern(/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/), // Controlla formato IBAN
   ];
-  iban = new FormControl('', this.iban_validators);
-  no_cc = new FormControl(false);
+  iban = new FormControl('', this.iban_validators); // FormControl IBAN con validazione dinamica
+  no_cc = new FormControl(false); // Checkbox per indicare assenza conto corrente
 }
 
