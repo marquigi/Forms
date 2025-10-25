@@ -22,10 +22,10 @@ interface Provincia {
 })
 export class FormControlComponent {
   // <h4>FormControl singolo</h4>
-  // un form control è un QUALSIASI controllo di un form
+  // FormControl per campo nome: Sintassi crea controllo, Semantica rappresenta input nome
   nome = new FormControl('Ivano'); // Rappresenta il campo nome
+  // FormControl con validatore: Sintassi definisce validazione, Semantica campo obbligatorio
   nomeConValidatore = new FormControl('', Validators.required); // Campo con validatore obbligatorio
-  // NOTA
 
   constructor() {
     //this.roma = { nome: "Roma", cod_istat: "000" }
@@ -33,24 +33,23 @@ export class FormControlComponent {
 
   // Metodo chiamato automaticamente dopo l'inizializzazione del componente
   ngOnInit() {
-    // L'observable valueChanges serve a "monitorare" il cambiamento del valore del FormControl
+    // Sintassi: subscribe a valueChanges, Semantica: reagisce a cambiamento valore nome
     this.nome.valueChanges.subscribe((v) => {
-      // Mi iscrivo ai cambiamenti del campo nome
+
       console.log(v); // Stampo nuovo valore in console
     });
 
-    // mi sottoscrivo al cambiamento della provincia
+    // Sintassi: subscribe a valueChanges, Semantica: aggiorna comuni al cambio provincia
     this.provincia.valueChanges.subscribe((p) => {
-      // Quando cambia la provincia aggiorno i comuni
       if (p === '') {
-        // Nessuna provincia scelta
+        // Sintassi: reset valori, Semantica: nessuna provincia selezionata disabilita comuni
         this.comuni = undefined; // Cancello lista comuni
         this.comune.setValue(''); // Reset campo comune
         this.comune.disable(); // Disabilito select comune
         return;
       }
 
-      // NOTA
+      // Sintassi: ricerca con find, Semantica: aggiorna lista comuni in base a provincia
       this.comuni = this.province.find((prov) => prov.sigla === p)?.comuni;
       this.comune.enable(); // Abilito select dei comuni
 
@@ -63,55 +62,58 @@ export class FormControlComponent {
       // }
     });
 
+    // Sintassi: setValue e disable, Semantica: inizializza campo comune vuoto e disabilitato
     this.comune.setValue(''); // Imposto comune a vuoto
     this.comune.disable(); // Inizio con campo disabilitato
 
-    // non ho un conto corrente
+    // Sintassi: subscribe a valueChanges, Semantica: gestisce validazione e abilitazione IBAN
     this.no_cc.valueChanges.subscribe((x) => {
       // se il checkbox è acceso, rimuovo tutti i validatori da IBAN
       if (x === true) {
-        // Se non ho conto rimuovo controlli
+        // Sintassi: rimuove validatori e disabilita, Semantica: nessun conto corrente disabilita IBAN
         this.iban.clearValidators(); // Tolgo validatori IBAN
         this.iban.disable(); // IBAN non più editabile
       }
       // se lo spengo, riapplico i validatori
       else {
-        // Se ho il conto
+        // Sintassi: abilita e imposta validatori, Semantica: conto corrente presente abilita IBAN
         this.iban.enable(); // Riattivo campo IBAN
         this.iban.setValidators(this.iban_validators); // Riapplico validatori
       }
-      // in qualsiasi caso, come richiesto dal framework, invoco la updateValueAndValidity()
+      // Sintassi: aggiorna stato validazione, Semantica: necessario dopo modifica validatori
       this.iban.updateValueAndValidity(); // Aggiorno stato validazione; IMPORTANTE!
     });
   }
 
   stampaNome() {
-    // Modifica il nome da codice
-    // Mostra il valore digitato in nome
+    // Sintassi: alert con valore, Semantica: mostra valore corrente campo nome
     alert(`Hai digitato ${this.nome.value}`); // Alert con valore aggiornato
     // Cambio il valore senza triggerare valueChanges
   }
 
   cambiaNome() {
     // { emitEvent: false } serve a non innescare la valueChanges
+    // Sintassi: setValue senza evento, Semantica: cambia nome senza triggerare eventi
     this.nome.setValue('Laura', { emitEvent: false });
   }
 
-  // FormControl per select città
+
   // <h4>FormControl su Select e Radio button</h4>
+  // FormControl per select città: Sintassi crea controllo, Semantica selezione città
   citta = new FormControl('');
   cittaOpts: { nome: string; cod_cat: string }[] = [
     { nome: 'Roma', cod_cat: 'H501' },
     { nome: 'Milano', cod_cat: 'A072' },
   ];
+  // FormControl per select città: Sintassi crea controllo, Semantica selezione città
   sesso = new FormControl('M');
 
   // <h4>Select dipendenti</h4>
-  // FormControl per provincia
+  // FormControl per select città: Sintassi crea controllo, Semantica selezione città
   provincia = new FormControl('');
-  // FormControl per comune dipendente
+  // FormControl per provincia: Sintassi crea controllo, Semantica selezione provincia
   comune = new FormControl('');
-  // Lista province con relativi comuni
+  // FormControl per comune: Sintassi crea controllo, Semantica selezione comune associato
   province: Provincia[] = [
     {
       nome: 'Roma',
@@ -144,7 +146,7 @@ export class FormControlComponent {
     // }
 
     if (this.nomeConValidatore.invalid) {
-      // Se il nome non è valido mi fermo
+      // Sintassi: markAsTouched, Semantica: mostra errore se nome non valido
       this.nomeConValidatore.markAsTouched(); // Mostro messaggio errore
       return; // Interrompo funzione
     }
@@ -152,12 +154,14 @@ export class FormControlComponent {
   }
 
   // <h4>FormControl con validatore dinamico</h4>
-  // Validatori per il campo IBAN
+  // Validatori per il campo IBAN: Sintassi array di ValidatorFn, Semantica validazione formato e obbligatorietà
   iban_validators: ValidatorFn[] = [
-    Validators.required,
+    Validators.required, // Campo Obbligatorio
     Validators.pattern(/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/), // Controlla formato IBAN
   ];
-  iban = new FormControl('', this.iban_validators); // FormControl IBAN con validazione dinamica
-  no_cc = new FormControl(false); // Checkbox per indicare assenza conto corrente
+  // FormControl IBAN con validazione dinamica: Sintassi crea controllo con validatori, Semantica campo IBAN con regole
+  iban = new FormControl('', this.iban_validators);
+  // FormControl checkbox no_cc: Sintassi crea controllo booleano, Semantica indica assenza conto corrente
+  no_cc = new FormControl(false);
 }
 
