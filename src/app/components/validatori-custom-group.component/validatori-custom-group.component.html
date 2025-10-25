@@ -1,15 +1,20 @@
 <!-- Sezione: validazione di due password in un FormGroup -->
 <h4>Validatore Custom su FormGroup</h4>
 <form [formGroup]="frm">
-    <!-- Collego form al FormGroup con validatore custom -->
+    <!-- Sintassi: [formGroup]="frm" lega il form al FormGroup frm definito nel componente -->
+    <!-- Semantica: permette di gestire e validare il gruppo di controlli p1 e p2 -->
     <div class="row">
         <div class="col">
             <!-- Campo password -->
+            <!-- Sintassi: formControlName="p1" lega questo input al controllo p1 nel FormGroup -->
+            <!-- Semantica: campo per inserire la password, validato come parte del gruppo -->
             <label for="p1">Password</label>
             <input [type]="tipo_input" class="form-control" formControlName="p1" id="p1">
         </div>
         <div class="col">
             <!-- Campo conferma password -->
+            <!-- Sintassi: formControlName="p2" lega questo input al controllo p2 nel FormGroup -->
+            <!-- Semantica: campo per confermare la password, usato per confronto nel validatore custom -->
             <label for="p2">Conferma Password</label>
             <input [type]="tipo_input" class="form-control" formControlName="p2" id="p2">
         </div>
@@ -29,4 +34,6 @@
     }
 </form>
 <!-- Errore se le password non coincidono -->
+<!-- Sintassi: (click)="showPassword()" lega l'evento click al metodo showPassword() -->
+<!-- Semantica: bottone per mostrare/nascondere le password inserite -->
 <button type="button" class="btn btn-secondary" (click)="showPassword()">Mostra password</button>

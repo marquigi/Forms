@@ -1,6 +1,8 @@
 <!-- Sezione: Validazione lunghezza massima del messaggio -->
 <h4>Lunghezza massima</h4>
 <label for="msg">Inserisci un messaggio</label>
+<!-- Sintassi: textarea con binding Angular [formControl] per controllo form -->
+<!-- Semantica: campo di testo multilinea per inserimento messaggio, limitato in lunghezza -->
 <textarea class="form-control" rows="6" [formControl]="msg"></textarea>
 
 <!-- Collegato al FormControl 'msg' nel TS -->
@@ -21,6 +23,8 @@
 <!-- Sezione: Campo nome con validatore obbligatorio e lunghezza minima -->
 <h4>Required e lunghezza minima</h4>
 <label for="nome">Nome</label>
+<!-- Sintassi: input testo con binding Angular [formControl] -->
+<!-- Semantica: campo di testo per inserimento nome obbligatorio con lunghezza minima -->
 <input type="text" class="form-control" [formControl]="nome" />
 <!-- Input collegato a FormControl 'nome' -->
 <!-- Mostra messaggi di errore appropriati -->

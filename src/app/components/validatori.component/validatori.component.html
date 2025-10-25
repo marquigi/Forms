@@ -1,15 +1,21 @@
 <!-- Layout a due colonne: menu e contenuto -->
 <div class="row">
     <div class="col-4">
-        <!-- Link alla gestione degli errori -->
+        <!-- routerLink è una direttiva Angular usata per navigare tra le route -->
+        <!-- Sintassi: <a routerLink="/path">Link</a> -->
+        <!-- Semantica: Imposta il percorso di navigazione senza ricaricare la pagina -->
         <a routerLink="/validatori">Gestione degli errori</a><br><br>
-        <!-- Link al validatore custom su FormControl -->
+        <!-- Sintassi: <a routerLink="/path">Link</a> -->
+        <!-- Semantica: Naviga alla route specificata, qui per il validatore custom su FormControl -->
         <a routerLink="/validatori/custom-control">Validatore custom (FormControl)</a><br><br>
-        <!-- Link al validatore custom su FormGroup -->
+        <!-- Sintassi: <a routerLink="/path">Link</a> -->
+        <!-- Semantica: Naviga alla route specificata, qui per il validatore custom su FormGroup -->
         <a routerLink="/validatori/custom-group">Validatore custom (FormGroup)</a><br>
     </div>
     <div class="col">
-        <!-- Qui verranno caricati i componenti figlio in base alla route -->
+        <!-- router-outlet è un placeholder che carica il componente associato alla route attiva -->
+        <!-- Sintassi: <router-outlet></router-outlet> -->
+        <!-- Semantica: Visualizza dinamicamente il componente figlio in base alla navigazione -->
         <router-outlet></router-outlet>
     </div>
 </div>

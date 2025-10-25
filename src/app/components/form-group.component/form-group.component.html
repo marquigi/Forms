@@ -1,46 +1,59 @@
 <!-- Form con controlli raggruppati tramite FormGroup -->
 <h4>Esempio di FormGroup</h4>
 <form [formGroup]="frm">
-    <!-- Collego il form al FormGroup dichiarato nel TS -->
+    <!-- Sintassi: formGroup associa il form al FormGroup nel TS -->
+    <!-- Semantica: collega il form HTML al modello dati reattivo -->
     <label for="nome">Nome</label>
-    <!-- Campo nome collegato al FormControl 'nome' -->
+    <!-- Sintassi: formGroup associa il form al FormGroup nel TS -->
+    <!-- Semantica: collega il form HTML al modello dati reattivo -->
     <input type="text" class="form-control" formControlName="nome" id="nome" />
     <label for="cognome">Cognome</label>
-    <!-- Campo cognome collegato al FormControl 'cognome' -->
+    <!-- Sintassi: formControlName lega l'input al FormControl 'cognome' -->
+    <!-- Semantica: campo per inserire il cognome -->
     <input type="text" class="form-control" formControlName="cognome" id="cognome" />
 
     <!-- FormGroup annidato per l'indirizzo -->
     <h4 class="mt-4">Indirizzo</h4>
-    <!-- Indico che i campi interni fanno parte del gruppo 'indirizzo' -->
+    <!-- Sintassi: formGroupName specifica il gruppo annidato 'indirizzo' -->
+    <!-- Semantica: raggruppa i campi indirizzo nel FormGroup 'indirizzo' -->
     <div formGroupName="indirizzo">
         <label for="via">Via</label>
-        <!-- Campo via -->
+        <!-- Sintassi: formControlName lega l'input al FormControl 'via' -->
+        <!-- Semantica: campo per inserire la via -->
         <input type="text" class="form-control" formControlName="via" id="via" />
         <label for="civico">Numero civico</label>
-        <!-- Campo numero civico -->
+        <!-- Sintassi: formControlName lega l'input al FormControl 'civico' -->
+        <!-- Semantica: campo per inserire il numero civico -->
         <input type="text" class="form-control" formControlName="civico" id="civico" />
     </div>
 </form>
-<!-- Bottone che imposta tutti i valori del form -->
+<!-- Sintassi: (click) associa l'evento click al metodo impostaTutto() -->
+<!-- Semantica: imposta tutti i valori del form con setValue() -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaTutto()">
     Imposta tutto
 </button>
-<!-- Bottone che usa patchValue() per cambiare solo il cognome -->
+<!-- Sintassi: (click) associa l'evento click al metodo impostaCognome() -->
+<!-- Semantica: aggiorna solo il campo cognome con patchValue() -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="impostaCognome()">
     Imposta solo il cognome
 </button>
-<!-- Stampa tutto il FormGroup in console -->
+<!-- Sintassi: (click) associa l'evento click al metodo stampaFrm() -->
+<!-- Semantica: stampa in console il valore completo del form -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaFrm()">
     Stampa il valore
 </button>
-<!-- Mostra solo il cognome -->
+<!-- Sintassi: (click) associa l'evento click al metodo stampaCognome() -->
+<!-- Semantica: stampa in console solo il valore del campo cognome -->
 <button type="button" class="btn btn-primary mt-2 me-1" (click)="stampaCognome()">
     Stampa il cognome
 </button>
-<!-- Imposta solo i dati del gruppo indirizzo -->
+<!-- Sintassi: (click) associa l'evento click al metodo setIndirizzo() -->
+<!-- Semantica: imposta solo i valori del gruppo indirizzo -->
 <button type="button" class="btn btn-secondary mt-2 me-1" (click)="setIndirizzo()">
     Imposta l'indirizzo
 </button>
 <br>
 <!-- Debug: mostra il valore del form in tempo reale -->
+<!-- Sintassi: usa il pipe json per visualizzare frm.value -->
+<!-- Semantica: visualizza in pagina il valore corrente del form -->
 <pre>{{ frm.value | json }}</pre>

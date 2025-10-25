@@ -2,7 +2,8 @@
 <h4>Validatore custom su FormControl</h4>
 <label for="citta">Città</label>
 <input type="text" id="citta" [formControl]="citta" class="form-control" />
-<!-- Campo collegato al FormControl con validazione custom -->
+<!-- Sintassi: binding Angular con [formControl] per collegare il controllo -->
+<!-- Semantica: campo di input per la città, collegato al FormControl con validazione custom -->
 <!-- Mostra errore solo se il campo è stato toccato e contiene errori -->
 @if(citta.errors && citta.touched){
 <!-- Messaggio di errore generato dal validatore custom -->

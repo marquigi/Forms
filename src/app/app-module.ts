@@ -14,7 +14,7 @@ import { ValidatoriCustomGroupComponent } from './components/validatori-custom-g
 
 @NgModule({
   declarations: [
-    // Componenti dichiarati in questo modulo
+    // Sintassi: elenco componenti, direttive e pipe; Semantica: elementi dichiarati e disponibili nel modulo
     App,
     FormControlComponent,
     FormGroupComponent,
