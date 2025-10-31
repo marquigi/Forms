@@ -80,7 +80,7 @@ export class FormControlComponent {
         this.iban.enable(); // Riattivo campo IBAN
         this.iban.setValidators(this.iban_validators); // Riapplico validatori
       }
-      // Sintassi: aggiorna stato validazione, Semantica: necessario dopo modifica validatori
+      // Sintassi: aggiorna stato validazione, Semantica: NECESSARIO/RICHIESTO dopo modifica validatori
       this.iban.updateValueAndValidity(); // Aggiorno stato validazione; IMPORTANTE!
     });
   }
