@@ -11,4 +11,5 @@ export class GestioneErroriComponent {
   msg = new FormControl('', Validators.maxLength(20));
   nome = new FormControl('', [Validators.required, Validators.minLength(2)]);
 
+
 }

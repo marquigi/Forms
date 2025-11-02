@@ -9,6 +9,7 @@
 <!-- Mostra errore solo se toccato e con errori -->
 @if(msg.errors && msg.touched){
 <!-- Messaggio dinamico per lunghezza eccessiva -->
+@let e = msg.errors["maxlength"];
 <span class="text-danger">
     Puoi inserire al max 20 caratteri, elimina
     {{ e["actualLength"] - e["requiredLength"] }}
