@@ -65,7 +65,7 @@ export class ValidatoriCustomGroupComponent {
     // Cambio input per mostrare testo
     setTimeout(() => {
       this.tipo_input = 'password';
-      // Torno a nascondere la password
+      // Torno a nascondere la password dopo un secondo
     }, 1000);
   }
 }
