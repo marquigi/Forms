@@ -6,6 +6,7 @@ import { ValidatoriComponent } from './components/validatori.component/validator
 import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component';
 import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component';
 import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component';
+import { FormArrayComponent } from './components/form-array.component/form-array.component';
 
 const routes: Routes = [
   // Sintassi: path '', Semantica: route base mostra FormControlComponent
@@ -13,6 +14,8 @@ const routes: Routes = [
   // Sintassi: path 'form-group', Semantica: mostra FormGroupComponent
   { path: 'form-group', component: FormGroupComponent },
   // Sintassi: path 'validatori' con children, Semantica: validatori con rotte annidate
+  { path: 'form-array', component: FormArrayComponent },
+  // NOTE
   {
     path: 'validatori',
     component: ValidatoriComponent,

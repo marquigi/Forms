@@ -1,0 +1,28 @@
+<h4>FormArray di FormControls</h4>
+<p>Inserisci l'elenco dei tuoi hobbies:</p>
+<div class="row gy-2">
+    @for (h of getHobbiesControls(); track $index; let l = $last; let p = $first)
+    {
+    <!-- NOTA ; NOTA  let f = $first, let pari = $even; let dispari = $odd-->
+    <div class="col-8">
+        <label [for]="'hobby_' + $index">Hobby</label>
+        <!-- NOTA -->
+        <input type="text" class="form-control" [formControl]="h" [id]="'hobby_' + $index"
+            [class]="{ 'is-invalid' : h.touched && h.invalid }">
+        <!-- NOTA -->
+    </div>
+    <div class="col">
+        @if(l){
+        <button type="b utton" class="btn btn-secondary mt-4" (click)="addHobby()">Aggiungi</button>
+        }
+        <!-- NOTA -->
+
+        @if (getHobbiesControls().length > 1) { <button type="button" class="btn btn-outline-danger mt-4 ms-1"
+            (click)="deleteHobby($index)">Elimina</button>
+        }
+        <!-- NOTA -->
+    </div>
+    }
+    <button type="button" class="btn btn-primary" (click)="deleteAllHobbies()">Elimina tutte</button>
+    <button type="button" class="btn btn-primary" (click)="deleteInvalidHobbies()">Elimina invalid</button>
+</div>

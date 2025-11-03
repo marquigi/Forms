@@ -9,7 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms'; // Modulo necessario per u
 import { ValidatoriComponent } from './components/validatori.component/validatori.component'; // Componente gestione validazioni
 import { GestioneErroriComponent } from './components/gestione-errori.component/gestione-errori.component'; // Messaggi di errore reattivi
 import { ValidatoriCustomControlComponent } from './components/validatori-custom-control.component/validatori-custom-control.component'; // Validatore personalizzato su FormControl
-import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component'; // Validatore personalizzato su FormGroup
+import { ValidatoriCustomGroupComponent } from './components/validatori-custom-group.component/validatori-custom-group.component';
+import { FormArrayComponent } from './components/form-array.component/form-array.component'; // Validatore personalizzato su FormGroup
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ValidatoriCustomGroupComponent } from './components/validatori-custom-g
     ValidatoriComponent,
     GestioneErroriComponent,
     ValidatoriCustomControlComponent,
-    ValidatoriCustomGroupComponent
+    ValidatoriCustomGroupComponent,
+    FormArrayComponent
   ],
   imports: [
     // Moduli che il progetto utilizza
